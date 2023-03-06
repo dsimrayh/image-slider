@@ -53,8 +53,7 @@ main {
     width: 60rem;
 }
 
-#left-btn,
-#right-btn {
+button {
     background-color: transparent;
     outline: transparent;
     border: none;
