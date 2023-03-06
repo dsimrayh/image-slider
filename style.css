@@ -48,9 +48,14 @@ main {
     place-items: center;
 }
 
-#image {
+.image {
     height: 30rem;
     width: 60rem;
+    display: none;
+}
+
+.image.visible {
+    display: block;
 }
 
 button {
@@ -109,5 +114,4 @@ li {
 
 .nav-circle:hover {
     cursor: pointer;
-    background-color: #fff;
 }

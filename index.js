@@ -1,15 +1,13 @@
 const [prevButtton, nextButton] = document.querySelectorAll('.arrow');
 const navCircles = document.querySelectorAll('.nav-circle');
-const image = document.querySelector('#image');
+const imageList = document.querySelectorAll('.image');
 
-let currentImage = 1;
-const imageList = {
-  1: './images/image_001.jpg',
-  2: './images/image_002.jpg',
-  3: './images/image_003.jpg',
-  4: './images/image_004.jpg',
-  5: './images/image_005.jpg',
-};
+let currentImage = 0;
+
+function updateImage(previousImage) {
+  imageList[previousImage].classList.toggle('visible');
+  imageList[currentImage].classList.toggle('visible');
+}
 
 function updateNavCircles(previousImage) {
   document
@@ -22,17 +20,17 @@ function updateNavCircles(previousImage) {
 
 prevButtton.addEventListener('click', () => {
   const previousImage = currentImage;
-  if (currentImage - 1 < 1) currentImage = 6;
+  if (currentImage - 1 < 0) currentImage = 5;
   currentImage -= 1;
-  image.src = imageList[currentImage];
+  updateImage(previousImage);
   updateNavCircles(previousImage);
 });
 
 nextButton.addEventListener('click', () => {
   const previousImage = currentImage;
-  if (currentImage + 1 > 5) currentImage = 0;
+  if (currentImage + 1 > 4) currentImage = -1;
   currentImage += 1;
-  image.src = imageList[currentImage];
+  updateImage(previousImage);
   updateNavCircles(previousImage);
 });
 
@@ -41,7 +39,7 @@ navCircles.forEach((circle) => {
     const previousImage = currentImage;
     const { key } = circle.dataset;
     currentImage = +key;
-    image.src = imageList[key];
+    updateImage(previousImage);
     updateNavCircles(previousImage);
   });
 });
