@@ -18,28 +18,44 @@ function updateNavCircles(previousImage) {
     .classList.toggle('active');
 }
 
-prevButtton.addEventListener('click', () => {
-  const previousImage = currentImage;
-  if (currentImage - 1 < 0) currentImage = 5;
-  currentImage -= 1;
-  updateImage(previousImage);
-  updateNavCircles(previousImage);
-});
-
-nextButton.addEventListener('click', () => {
+function autoScroll() {
   const previousImage = currentImage;
   if (currentImage + 1 > 4) currentImage = -1;
   currentImage += 1;
   updateImage(previousImage);
   updateNavCircles(previousImage);
+}
+
+let autoScrollInterval = setInterval(autoScroll, 5000);
+
+prevButtton.addEventListener('click', () => {
+  clearInterval(autoScrollInterval);
+  const previousImage = currentImage;
+  if (currentImage - 1 < 0) currentImage = 5;
+  currentImage -= 1;
+  updateImage(previousImage);
+  updateNavCircles(previousImage);
+  autoScrollInterval = setInterval(autoScroll, 5000);
+});
+
+nextButton.addEventListener('click', () => {
+  clearInterval(autoScrollInterval);
+  const previousImage = currentImage;
+  if (currentImage + 1 > 4) currentImage = -1;
+  currentImage += 1;
+  updateImage(previousImage);
+  updateNavCircles(previousImage);
+  autoScrollInterval = setInterval(autoScroll, 5000);
 });
 
 navCircles.forEach((circle) => {
   circle.addEventListener('click', () => {
+    clearInterval(autoScrollInterval);
     const previousImage = currentImage;
     const { key } = circle.dataset;
     currentImage = +key;
     updateImage(previousImage);
     updateNavCircles(previousImage);
+    autoScrollInterval = setInterval(autoScroll, 5000);
   });
 });
