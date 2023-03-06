@@ -8,19 +8,29 @@
     <title>Image Slider</title>
 </head>
 <body>
-    <main id="main">
+    <main>
         <header id="header">
             <h1>Image Slider</h1>
         </header>
         <div id="image-slider">
-            <button id="left-btn"><</button> 
+            <button id="left-btn">
+                <img class="arrow" id="prev" src="./images/arrow.png" alt="prev">
+            </button> 
             <div id="image-container">
-                <!-- img -->
+                <img id="image" src="./images/image_001.jpg" alt="image">
             </div>
-            <button id="right-btn">></button>  
+            <button id="right-btn">
+                <img class="arrow" id="next" src="./images/arrow.png" alt="next">
+            </button>  
         </div> 
-        <nav id="nav">
-            <!-- ul -->
+        <nav>
+            <ul>
+                <li><div class="nav-circle"></div></li>
+                <li><div class="nav-circle"></div></li>
+                <li><div class="nav-circle"></div></li>
+                <li><div class="nav-circle"></div></li>
+                <li><div class="nav-circle"></div></li>
+            </ul>
         </nav>
     </main>
     <script type="text/javascript" src="./index.js"></script>
